@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+           id="com.ksx.OriChange"
+      version="0.1.0-dev">
+    <name>OriChange</name>
+    <description>IOS Orientation Change Plugin</description>
+    <license>MIT</license>
+    <keywords>cordova,orientation,change,ios</keywords>
+
+    <js-module src="www/oriChange.js" name="oriChange">
+        <clobbers target="window.oriChange" />
+    </js-module>
+    
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="OriChange">
+                <param name="ios-package" value="CDVOriChange"/>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CDVOriChange.h" />
+        <source-file src="src/ios/CDVOriChange.m" />
+    </platform>
+
+
+
+</plugin>
