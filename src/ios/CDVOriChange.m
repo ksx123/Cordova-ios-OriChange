@@ -43,11 +43,15 @@
     
 }
 
--(void)oriChange:(UIInterfaceOrientation) ori
+-(void)oriChange:(UIInterfaceOrientation) orientation
 {
     if ([[UIDevice currentDevice] respondsToSelector:@selector(setOrientation:)]) {
-        NSLog(@"viewDidAppear");
-        objc_msgSend([UIDevice currentDevice], @selector(setOrientation:), ori);
+        NSMethodSignature *sig = [[UIDevice currentDevice] methodSignatureForSelector:@selector(setOrientation:)];
+        NSInvocation* invo = [NSInvocation invocationWithMethodSignature:sig];
+        [invo setTarget:[UIDevice currentDevice]];
+        [invo setSelector:@selector(setOrientation:)];
+        [invo setArgument:&orientation atIndex:2];
+        [invo invoke];
     }
 }
 
